@@ -78,13 +78,16 @@ function renderSets(sets) {
         var removeButton = $('<td class="remove"><i class="icon-trash"></i></td>');
         removeButton.confirmation({
             singleton: true,
-            onConfirm: function(result) {
-                if (result) {
-                    localStorage.removeItem(set.key);
-                    refreshSetsList(tab_url);
-                }
-            }
+            onConfirm: function (set) {
+                return function(result) {
+                    if (result) {
+                        localStorage.removeItem(set.key);
+                        refreshSetsList(tab_url);
+                    }
+                };
+            }(set)
         });
+
         newRow.append(removeButton);
         newRow.append('<td class="export"><i class="icon-share-alt"></i></td>');
 

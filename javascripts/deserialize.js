@@ -96,7 +96,7 @@
                     return true;
                 }
 
-                if ($current.is('input:text, input:password')) {
+                if ($current.is('input:text, input:password') || $current.is('input[type="number"]')) {
                     if ($currentSavedValue === undefined) {
                         $current.val('');
                     } else {
